@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NocturneXthetic | Home</title>
+  <link rel="stylesheet" href="CSS/Home.css">
+  <link rel = "icon" href="Images/Nocturne9.jpg" type="image/jpeg">
+  <link href="index.html">
+</head>
+
+<body id="top">
+
+  <nav>
+    <a href="Home.html">Home</a> |
+    <a href="About.html">About</a> |
+    <a href="Contact.html">Contact</a> |
+    <a href="Profile.html">Profile</a> |
+    <a href="Logout.html">Logout</a>
+  </nav>
+
+  <div class="user-container">
+
+    <div class="avatar" id="avatarLetter"></div>
+
+    <button class="dropdown-btn" id="dropdownBtn">▾</button>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+
+        <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar"></div>
+
+            <div class="profile-info">
+                <h3 id="username"></h3>
+                <p id="useremail"></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <a href="#">User Profile</a>
+        <a href="#">Account Settings</a>
+        <a href="#">Notifications</a>
+        <a href="#">Logout</a>
+
+    </div>
+
+</div>
+
+  <img src="Images/Nocturne4.jpg" alt="Profile Image">
+
+  <hr>
+
+  <h1>NOCTURNEXTHETIC</h1>
+  <p>Moon between lines</p>
+
+  <h2>Explore</h2>
+
+  <table>
+    <tr>
+      <td><a href="Songs.html"><p>Songs</p></a></td>
+      <td><a href="Videos.html"><p>Videos</p></a></td>
+      <td><a href="Stories.html"><p>Stories</p></a></td>
+    </tr>
+    <tr>
+      <td class="popup-card"><p>Night Thoughts</p></td>
+      <td class="popup-card"><p>Playlists</p></td>
+      <td class="popup-card"><p>Confessions</p></td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <h2>Featured Tonight</h2>
+  <ul>
+    <li>Midnight Melodies – curated songs for sleepless minds</li>
+    <li>Words that Ignite – powerful speeches that inspire</li>
+    <li>Stories from the Dark – romance, mystery, and thrill</li>
+  </ul>
+
+  <hr>
+
+  <h2>Who is NOCTURNE for?</h2>
+  <ul>
+    <li>Broken hearts</li>
+    <li>Overthinking minds</li>
+    <li>Silent fighters</li>
+    <li>Night coders</li>
+    <li>Lonely creatives</li>
+    <li>Dreamers awake at 3 AM</li>
+  </ul>
+
+  <hr>
+
+  <h2>About NOCTURNE</h2>
+  <p>
+    NOCTURNE is a quiet digital space built for the night.
+    A place where music, stories, and thoughts exist without noise.
+  </p>
+
+  <p><a class="readmore" href="About.html">Read more</a></p>
+
+  <hr>
+
+  <footer class="nocturne-footer">
+
+    <div class="back-to-top" id="BackToTop">
+        <a href="#top">Back to top</a>
+    </div>
+
+    <div class="footer-column">
+        <h4>Connect With Us</h4>
+        <a href="https://www.instagram.com/nocturnexthetic/?hl=en">Instagram</a>
+        <a href="#">Twitter</a>
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+    </div>
+
+    <div class="footer-column">
+        <h4>Let Us Help You</h4>
+        <a href="#">Your Account</a>
+        <a href="#">Support</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+    </div>
+
+    <div class="footer-lang">
+        <h2>Nocturne</h2>
+        <div class="footer-options">
+            <span>English</span>
+            <span>Global</span>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-services">
+            <div>
+                <strong>Nocturne Studio</strong>
+                <p>Creative Digital Experiences</p>
+            </div>
+            <div>
+                <strong>Nocturne Cloud</strong>
+                <p>Secure & Scalable Systems</p>
+            </div>
+            <div>
+                <strong>Nocturne Audio</strong>
+                <p>Soundscapes for the Night</p>
+            </div>
+            <div>
+                <strong>Nocturne Media</strong>
+                <p>Stories, Design & Motion</p>
+            </div>
+        </div>
+
+        <p class="copyright">
+            © 2026 Nocturne. All rights reserved.
+        </p>
+    </div>
+    <br><br>
+  </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* -----------------------------
+       Back To Top Button Control
+    ----------------------------- */
+
+    const backToTop = document.getElementById("BackToTop");
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+            backToTop.classList.add("show");
+        } else {
+            backToTop.classList.remove("show");
+        }
+    });
+
+
+    /* -----------------------------
+       User Profile Avatar (Dynamic)
+    ----------------------------- */
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if(user){
+
+        const letter = user.name.charAt(0).toUpperCase();
+
+        document.getElementById("username").textContent = user.name;
+        document.getElementById("useremail").textContent = user.email;
+        document.getElementById("avatarLetter").textContent = letter;
+        document.getElementById("profileAvatar").textContent = letter;
+
+    } else {
+
+        /* fallback if no user logged in */
+
+        document.getElementById("username").textContent = "Guest User";
+        document.getElementById("useremail").textContent = "guest@nocturne.com";
+        document.getElementById("avatarLetter").textContent = "G";
+        document.getElementById("profileAvatar").textContent = "G";
+
+    }
+
+
+    /* -----------------------------
+       Avatar Dropdown Menu
+    ----------------------------- */
+
+    const btn = document.getElementById("dropdownBtn");
+    const menu = document.getElementById("dropdownMenu");
+
+    btn.onclick = function(){
+        menu.style.display =
+        menu.style.display === "block" ? "none" : "block";
+    };
+
+    window.onclick = function(e){
+        if(!e.target.closest(".user-container")){
+            menu.style.display = "none";
+        }
+    };
+
+
+    /* -----------------------------
+       Smooth Scroll For Anchor Links
+    ----------------------------- */
+
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            const target = document.querySelector(this.getAttribute("href"));
+
+            if (target) {
+                e.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+
+
+    /* -----------------------------
+       Popup Cards Interaction
+    ----------------------------- */
+
+    const popupCards = document.querySelectorAll(".popup-card");
+
+    popupCards.forEach(card => {
+        card.addEventListener("click", function () {
+
+            const text = this.innerText.trim();
+
+            if (text === "Night Thoughts") {
+                alert("🌙 Night Thoughts\n\nA place where midnight ideas become words.");
+            }
+
+            if (text === "Playlists") {
+                alert("🎧 Playlists\n\nCurated music collections coming soon.");
+            }
+
+            if (text === "Confessions") {
+                alert("🖤 Confessions\n\nAnonymous stories from silent hearts.");
+            }
+
+        });
+    });
+
+
+    /* -----------------------------
+       Card Hover Glow
+    ----------------------------- */
+
+    const cards = document.querySelectorAll("td");
+
+    cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            card.style.transition = "0.3s";
+        });
+    });
+
+
+    /* -----------------------------
+       Scroll Fade Animation
+    ----------------------------- */
+
+    const sections = document.querySelectorAll("h2, ul, table");
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                entry.target.style.transition = "all 0.8s ease";
+
+            }
+
+        });
+
+    });
+
+    sections.forEach(section => {
+
+        section.style.opacity = "0";
+        section.style.transform = "translateY(40px)";
+
+        observer.observe(section);
+
+    });
+
+});
+
+
+/* -----------------------------
+   Logout Function
+----------------------------- */
+
+function logout(){
+    localStorage.removeItem("user");
+    window.location.href = "Login.html";
+}
+</script>
+
+</body>
+</html>

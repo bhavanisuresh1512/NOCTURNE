@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "stylesheet" href="CSS/Contact.css">
+    <title>NocturneXthetic | Contact Us</title>
+    <link rel = "icon" href="Images/Nocturne9.jpg" type="image/jpeg">
+</head>
+<body>
+
+    
+    <nav>
+    <a href="Home.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="profile.html">Profile</a> |
+    <a href="Logout.html">Logout</a>
+  </nav>
+
+    <img src="Images/Nocturne94.jpg" alt="Profile Image" width="250">
+
+    <h1>NOCTURNEXTHETIC</h1>
+    <p>Moon between lines</p>
+    
+
+    <section class="contact-hero">
+        <h2>Let’s Connect</h2>
+        <p>
+            At Nocturne, every voice matters.  
+            Whether you have a question, an idea, or just want to say hello —
+            we’re here for you.
+        </p>
+    </section>
+
+    <section class="contact-about">
+        <h3>Why Reach Out?</h3>
+        <p>
+            Nocturne is built for creators, thinkers, and night souls.
+            We believe communication is the foundation of everything meaningful.
+            If something caught your attention — or something didn’t —
+            tell us.
+        </p>
+        <p>
+            Your feedback helps us grow, improve, and evolve.
+        </p>
+    </section>
+
+    <section class="contact-form-section">
+        <h3>Send Us a Message</h3>
+        <p>Please fill out the form below and we’ll get back to you soon.</p>
+
+        <form>
+            <label for="name">Full Name</label><br>
+            <input type="text" id="name" name="name" placeholder="Enter your name"><br><br>
+
+            <label for="email">Email Address</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter your email"><br><br>
+
+            <label for="subject">Subject</label><br>
+            <input type="text" id="subject" name="subject" placeholder="Reason for contacting"><br><br>
+
+            <label for="message">Your Message</label><br>
+            <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea><br><br>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <section class="contact-info">
+        <h3>Contact Information</h3>
+        <p><strong>Email:</strong> moonbetweenlights@nocturne.com</p>
+        <p><strong>Phone:</strong> +91 9700899143</p>
+        <p><strong>Address:</strong> Nocturne HQ, Midnight Avenue, Dark City</p>
+    </section>
+
+    <section class="contact-hours">
+        <h3>Working Hours</h3>
+        <p>Monday – Friday: 9:00 PM – 5:00 AM</p>
+        <p>Saturday: 10:00 PM – 3:00 AM</p>
+        <p>Sunday: Closed</p>
+    </section>
+
+    <section class="contact-faq">
+        <h3>Frequently Asked Questions</h3>
+
+        <h4>How long does it take to get a response?</h4>
+        <p>We usually reply within 24–48 hours.</p>
+
+        <h4>Do you offer customer support?</h4>
+        <p>Yes, our support team is available during working hours.</p>
+
+        <h4>Can I collaborate with Nocturne?</h4>
+        <p>Absolutely. Send us a message with your proposal.</p>
+    </section>
+
+    <section class="contact-cta">
+        <h3>Still Thinking?</h3>
+        <p>
+            Don’t hesitate. Conversations start ideas,
+            and ideas create worlds.
+        </p>
+    </section>
+    <!-- Designed Message Modal -->
+    <div id="messageModal" class="modal">
+    <div class="modal-content">
+        <span id="modalIcon"></span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalText"></p>
+        <button id="closeModal">Close</button>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================
+       Get Form Elements
+    ========================= */
+
+    const form = document.querySelector("form");
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const subject = document.getElementById("subject");
+    const message = document.getElementById("message");
+
+    const modal = document.getElementById("messageModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalIcon = document.getElementById("modalIcon");
+    const closeModal = document.getElementById("closeModal");
+
+
+    /* =========================
+       Show Modal Function
+    ========================= */
+
+    function showModal(icon, title, text) {
+
+        modalIcon.textContent = icon;
+        modalTitle.textContent = title;
+        modalText.textContent = text;
+
+        modal.style.display = "flex";
+
+    }
+
+
+    /* =========================
+       Close Modal
+    ========================= */
+
+    closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+
+    /* =========================
+       Form Submit Handling
+    ========================= */
+
+    form.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        if (
+            name.value.trim() === "" ||
+            email.value.trim() === "" ||
+            subject.value.trim() === "" ||
+            message.value.trim() === ""
+        ) {
+
+            showModal(
+                "⚠️",
+                "Incomplete Form",
+                "Please fill in all fields before sending your message."
+            );
+
+            return;
+        }
+
+
+        /* Basic Email Check */
+
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+        if (!email.value.match(emailPattern)) {
+
+            showModal(
+                "❌",
+                "Invalid Email",
+                "Please enter a valid email address."
+            );
+
+            return;
+        }
+
+
+        /* Success Message */
+
+        showModal(
+            "🌙",
+            "Message Sent",
+            "Thank you for reaching out to Nocturne. We will respond soon."
+        );
+
+        form.reset();
+
+    });
+
+
+    /* =========================
+       Smooth Back To Top
+    ========================= */
+
+    const backTop = document.querySelector(".back-to-top a");
+
+    if (backTop) {
+
+        backTop.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+
+    /* =========================
+       Section Scroll Animation
+    ========================= */
+
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                entry.target.style.transition = "all 0.8s ease";
+
+            }
+
+        });
+
+    });
+
+    sections.forEach(section => {
+
+        section.style.opacity = "0";
+        section.style.transform = "translateY(40px)";
+
+        observer.observe(section);
+
+    });
+
+});
+</script>
+</body>
+<footer class="nocturne-footer">
+
+    <div class="back-to-top">
+        <a href="#top">Back to top</a>
+    </div>
+
+        <div class="footer-column">
+            <h4>Connect With Us</h4>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+        </div>
+
+
+        <div class="footer-column">
+            <h4>Let Us Help You</h4>
+            <a href="#">Your Account</a>
+            <a href="#">Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+        </div>
+    </div>
+
+    <div class="footer-lang">
+        <h2>Nocturne</h2>
+        <div class="footer-options">
+            <span>English</span>
+            <span>Global</span>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-services">
+            <div>
+                <strong>Nocturne Studio</strong>
+                <p>Creative Digital Experiences</p>
+            </div>
+            <div>
+                <strong>Nocturne Cloud</strong>
+                <p>Secure & Scalable Systems</p>
+            </div>
+            <div>
+                <strong>Nocturne Audio</strong>
+                <p>Soundscapes for the Night</p>
+            </div>
+            <div>
+                <strong>Nocturne Media</strong>
+                <p>Stories, Design & Motion</p>
+            </div>
+        </div>
+
+        <p class="copyright">
+            © 2026 Nocturne. All rights reserved.
+        </p>
+    </div>
+
+</footer>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>NocturneXthetic | Sign In</title>
+
+<link rel="icon" href="Images/Nocturne9.jpg" type="image/jpeg">
+<link rel="stylesheet" href="CSS/Signin.css">
+
+</head>
+
+<body>
+
+<h1>NOCTURNEXTHETIC</h1>
+<p>Moon between lines</p>
+
+<section>
+
+<h2>Create Your Account</h2>
+
+<form id="signupForm">
+
+<label>Name:</label>
+<input type="text" id="username" required>
+
+<label>Email:</label>
+<input type="email" id="email" required>
+
+<label>Password:</label>
+<input type="password" id="password" required>
+
+<label>Confirm Password:</label>
+<input type="password" id="confirmPassword" required>
+
+<button type="submit">Enter the Night</button>
+
+</form>
+
+<p>
+Already have an account?
+<a href="index.html">Login</a>
+</p>
+
+</section>
+
+
+<!-- POPUP MODAL -->
+
+<div class="modal" id="popup">
+
+<div class="modal-content">
+
+<div id="popupIcon" class="popup-icon"></div>
+
+<h3 id="popupTitle"></h3>
+
+<p id="popupText"></p>
+
+<button onclick="closePopup()">Close</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const form = document.getElementById("signupForm");
+
+
+function showPopup(icon,title,text){
+
+document.getElementById("popupIcon").innerText = icon;
+document.getElementById("popupTitle").innerText = title;
+document.getElementById("popupText").innerText = text;
+
+document.getElementById("popup").style.display = "flex";
+
+}
+
+
+function closePopup(){
+window.location.href = "index.html";
+}
+
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let username = document.getElementById("username").value.trim();
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value.trim();
+let confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+
+/* EMPTY FIELD CHECK */
+
+if(username==="" || email==="" || password==="" || confirmPassword===""){
+showPopup("⚠️","Incomplete Form","Please fill in all fields before sending your message.");
+return;
+}
+
+
+/* PASSWORD DIGIT CHECK */
+
+let digitCount = (password.match(/\d/g) || []).length;
+
+if(digitCount < 6){
+showPopup("❌","Weak Password","Password must contain at least 6 digits.");
+return;
+}
+
+
+/* PASSWORD MATCH */
+
+if(password !== confirmPassword){
+showPopup("👎","Password Error","Password and Confirm Password must match.");
+return;
+}
+
+
+/* STORE USER */
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+let existingUser = users.find(u => u.email === email);
+
+if(existingUser){
+showPopup("😅","Ochhh!!","Account exists. Please login.");
+return;
+}
+
+
+users.push({
+username: username,
+email: email,
+password: password
+});
+
+localStorage.setItem("users", JSON.stringify(users));
+
+
+showPopup("✨","Success","Account created successfully!")
+});
+</script>
+
+</body>
+
+</html>

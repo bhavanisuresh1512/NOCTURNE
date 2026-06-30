@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>NocturneXthetic</title>
+
+<link rel="stylesheet" href="CSS/style.css">
+<link rel="icon" href="Images/Nocturne9.jpg" type="image/jpeg">
+
+</head>
+
+<body>
+
+<h1>NOCTURNEXTHETIC</h1>
+<p>Moon between lines</p>
+
+<br><br>
+
+<h3 id="greeting"></h3>
+
+<section>
+
+<form id="loginForm" novalidate>
+
+<label>Email:</label>
+<input type="text" id="email" placeholder="Username or email" required>
+
+<br><br>
+
+<label>Password:</label>
+<input type="password" id="password" placeholder="Password" required>
+
+<br><br>
+
+<button type="submit">Enter the Night</button>
+
+</form>
+
+<p>
+New to NOCTURNE?
+<a href="Signin.html">Begin</a>
+</p>
+
+</section>
+
+
+<!-- MODAL -->
+
+<div id="messageModal" class="modal">
+
+<div class="modal-content">
+
+<span id="modalIcon"></span>
+
+<h3 id="modalTitle"></h3>
+
+<p id="modalText"></p>
+
+<button id="modalAction">Welcome Petal</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* Greeting */
+
+const greeting = document.getElementById("greeting");
+const hour = new Date().getHours();
+
+if(hour < 12){
+greeting.textContent="── Good Morning, Dreamer ♡!";
+}
+else if(hour < 18){
+greeting.textContent="── Good Evening, Wanderer ♡!";
+}
+else{
+greeting.textContent="── Welcome to the Night ♡!";
+}
+
+
+/* Modal */
+
+const modal = document.getElementById("messageModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalIcon = document.getElementById("modalIcon");
+const modalAction = document.getElementById("modalAction");
+
+function showModal(icon,title,text){
+
+modalIcon.textContent = icon;
+modalTitle.textContent = title;
+modalText.textContent = text;
+
+modal.style.display="flex";
+
+}
+
+
+/* Login Logic */
+
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit",function(event){
+
+event.preventDefault();
+
+let email=document.getElementById("email").value.trim();
+let password=document.getElementById("password").value.trim();
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let user = users.find(u=>u.email===email);
+
+
+/* Account Not Found */
+
+if(!user){
+
+showModal(
+"⚠️",
+"Account Not Found",
+"No account exists. Please Sign In."
+);
+
+modalAction.textContent="Create Account";
+
+modalAction.onclick=function(){
+window.location.href="Signin.html";
+};
+
+return;
+
+}
+
+
+/* Wrong Password */
+
+if(user.password !== password){
+
+showModal(
+"❌",
+"Wrong Password",
+"Password incorrect."
+);
+
+modalAction.textContent="Try Again";
+
+/* FIX → go back to login page */
+
+modalAction.onclick=function(){
+window.location.href="Login.html";
+};
+
+return;
+
+}
+
+
+/* Success Login */
+
+localStorage.setItem("currentUser",JSON.stringify(user));
+
+showModal(
+"🌙",
+"Welcome "+user.username,
+"Entering the Night"
+);
+
+modalAction.textContent="Enter Babe 😉";
+
+modalAction.onclick=function(){
+window.location.href="Home.html";
+};
+
+});
+
+</script>
+
+</body>
+
+</html>

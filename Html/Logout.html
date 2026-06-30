@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="CSS/Logout.css">
+<title>NocturneXthetic | Logout</title>
+<link rel="icon" href="Images/Nocturne9.jpg" type="image/jpeg">
+
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Login</a>
+</nav>
+
+<img src="Images/Nocturne96.jpg" alt="Profile Image" width="250">
+
+<h1>NOCTURNEXTHETIC</h1>
+<p>Moon between lines</p>
+
+<main>
+
+<section>
+
+<h2>You’ve Been Logged Out</h2>
+
+<p>
+Thank you for spending time with Nocturne.  
+Your session has ended safely.
+</p>
+
+<div>
+
+<!-- Logout Button -->
+<a href="#" id="logoutBtn">Logout</a>
+<br><br>
+
+<a href="Home.html">Return to Home</a>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- Logout Popup -->
+
+<div class="popup" id="logoutPopup">
+
+<div class="popup-box">
+
+<h3>Confirm Logout</h3>
+
+<p>Petal, are you sure you want to logout from Nocturne?</p>
+
+<button class="yes" id="confirmLogout">Yes</button>
+<button class="no" id="cancelLogout">Cancel</button>
+
+</div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    const popup = document.getElementById("logoutPopup");
+    const confirmBtn = document.getElementById("confirmLogout");
+    const cancelBtn = document.getElementById("cancelLogout");
+
+    /* =========================
+       Open Popup
+    ========================= */
+
+    logoutBtn.addEventListener("click", function(event){
+
+        event.preventDefault();
+        popup.style.display="flex";
+
+    });
+
+
+    /* =========================
+       Cancel Logout
+    ========================= */
+
+    cancelBtn.addEventListener("click", function(){
+
+        popup.style.display="none";
+
+    });
+
+
+    /* =========================
+       Confirm Logout
+    ========================= */
+
+    confirmBtn.addEventListener("click", function(){
+
+        localStorage.removeItem("user");
+        sessionStorage.clear();
+
+        alert("You have been logged out successfully Petal. I miss you Petal by your stargazer");
+
+        window.location.href="index.html";
+
+    });
+
+
+    /* =========================
+       Fade In Logout Card
+    ========================= */
+
+    const logoutCard = document.querySelector("section");
+
+    logoutCard.style.opacity="0";
+    logoutCard.style.transform="translateY(30px)";
+
+    setTimeout(()=>{
+
+        logoutCard.style.transition="all 0.8s ease";
+        logoutCard.style.opacity="1";
+        logoutCard.style.transform="translateY(0)";
+
+    },200);
+
+
+    /* =========================
+       Button Hover Effect
+    ========================= */
+
+    const buttons=document.querySelectorAll("section div a");
+
+    buttons.forEach(btn=>{
+
+        btn.addEventListener("mouseenter",()=>{
+
+            btn.style.transform="translateY(-4px) scale(1.05)";
+
+        });
+
+        btn.addEventListener("mouseleave",()=>{
+
+            btn.style.transform="translateY(0) scale(1)";
+
+        });
+
+    });
+
+
+    /* =========================
+       Title Glow Animation
+    ========================= */
+
+    const title=document.querySelector("h1");
+
+    let glow=false;
+
+    setInterval(()=>{
+
+        if(glow){
+            title.style.textShadow="0 0 15px rgba(120,160,255,0.8)";
+        }
+        else{
+            title.style.textShadow="none";
+        }
+
+        glow=!glow;
+
+    },1200);
+
+});
+
+</script>
+
+</body>
+</html>

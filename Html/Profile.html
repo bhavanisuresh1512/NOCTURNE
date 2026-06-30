@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "stylesheet" href = "CSS/Profile.css">
+    <title>NocturneXthetic | Profile</title>
+    <link rel = "icon" href="Images/Nocturne9.jpg" type="image/jpeg">
+</head>
+<body>
+
+        <nav>
+           <a href="Home.html">Home</a> |
+           <a href="about.html">About</a> |
+           <a href="contact.html">Contact</a> |
+           <a href="profile.html">Profile</a> |
+           <a href="Logout.html">Logout</a>
+        </nav>
+
+</div>
+
+ <img src="Images/Nocturne95.jpg" alt="Profile Image" width="250">
+
+  <hr>
+
+  <h1>NOCTURNEXTHETIC</h1>
+  <p>Moon between lines</p>
+
+
+    <section class="profile-about">
+        <h3>About</h3>
+        <p>
+            A mind shaped by darkness and creativity, walking between code and dreams.
+            Nocturne is not just a name — it’s a state of being.  
+            A space where silence speaks and ideas live in the shadows.
+        </p>
+        <p>
+            This profile represents individuality, vision, and the beauty of the unseen.
+        </p>
+    </section>
+
+    <section class="profile-details">
+        <h3>Personal Information</h3>
+        <p><strong>Name:</strong> Nocturne User</p>
+        <p><strong>Email:</strong> moonbetweenlines@nocturne.com</p>
+        <p><strong>Location:</strong> Midnight City</p>
+        <p><strong>Member Since:</strong> 2026</p>
+    </section>
+
+    <section class="profile-skills">
+        <h3>Skills & Interests</h3>
+        <ul>
+            <li>Web Development</li>
+            <li>Creative Design</li>
+            <li>Digital Art</li>
+            <li>Music Production</li>
+            <li>Night Photography</li>
+            <li>Writing & Poetry</li>
+        </ul>
+    </section>
+
+    <section class="profile-projects">
+        <h3>Projects</h3>
+        <div class="project-card">
+            <h4>Nocturne Web</h4>
+            <p>A dark-themed digital experience built for creators.</p>
+        </div>
+        <div class="project-card">
+            <h4>Midnight UI</h4>
+            <p>A modern UI kit inspired by the night.</p>
+        </div>
+        <div class="project-card">
+            <h4>Shadow System</h4>
+            <p>An experimental design system for minimal interfaces.</p>
+        </div>
+    </section>
+
+    <section class="profile-social">
+        <h3>Connect</h3>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+    </section>
+
+    <section class="profile-cta">
+        <h3>Want to Collaborate?</h3>
+        <p>Let’s build something meaningful in the dark.</p>
+        <a href="contact.html">Contact Us</a>
+    </section>
+
+</body>
+<footer class="nocturne-footer">
+
+    <div class="back-to-top">
+        <a href="#top">Back to top</a>
+    </div>
+
+        <div class="footer-column">
+            <h4>Connect With Us</h4>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+        </div>
+
+
+        <div class="footer-column">
+            <h4>Let Us Help You</h4>
+            <a href="#">Your Account</a>
+            <a href="#">Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+        </div>
+    </div>
+
+    <div class="footer-lang">
+        <h2>Nocturne</h2>
+        <div class="footer-options">
+            <span>English</span>
+            <span>Global</span>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-services">
+            <div>
+                <strong>Nocturne Studio</strong>
+                <p>Creative Digital Experiences</p>
+            </div>
+            <div>
+                <strong>Nocturne Cloud</strong>
+                <p>Secure & Scalable Systems</p>
+            </div>
+            <div>
+                <strong>Nocturne Audio</strong>
+                <p>Soundscapes for the Night</p>
+            </div>
+            <div>
+                <strong>Nocturne Media</strong>
+                <p>Stories, Design & Motion</p>
+            </div>
+        </div>
+
+        <p class="copyright">
+            © 2026 Nocturne. All rights reserved.
+        </p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================
+       Welcome Message
+    ========================= */
+
+    console.log("🌙 Welcome to Nocturne Profile");
+
+
+
+    /* =========================
+       Smooth Back To Top
+    ========================= */
+
+    const backTop = document.querySelector(".back-to-top a");
+
+    if (backTop) {
+
+        backTop.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+
+
+    /* =========================
+       Section Scroll Animation
+    ========================= */
+
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                entry.target.style.transition = "all 0.8s ease";
+
+            }
+
+        });
+
+    });
+
+    sections.forEach(section => {
+
+        section.style.opacity = "0";
+        section.style.transform = "translateY(40px)";
+
+        observer.observe(section);
+
+    });
+
+
+
+    /* =========================
+       Project Card Hover Effect
+    ========================= */
+
+    const projects = document.querySelectorAll(".project-card");
+
+    projects.forEach(card => {
+
+        card.addEventListener("mouseenter", function () {
+
+            card.style.transform = "translateY(-8px)";
+            card.style.boxShadow = "0 0 25px rgba(120,160,255,0.5)";
+
+        });
+
+        card.addEventListener("mouseleave", function () {
+
+            card.style.transform = "translateY(0)";
+            card.style.boxShadow = "none";
+
+        });
+
+    });
+
+
+
+    /* =========================
+       Social Link Alert
+    ========================= */
+
+    const socialLinks = document.querySelectorAll(".profile-social a");
+
+    socialLinks.forEach(link => {
+
+        link.addEventListener("click", function () {
+
+            if (link.getAttribute("href") === "#") {
+
+                alert("🌙 Social profile coming soon.");
+
+            }
+
+        });
+
+    });
+
+});
+    </script>
+</footer>
+</html>
